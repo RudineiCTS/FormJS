@@ -1,7 +1,8 @@
-const isValidEmail = (email) => {
-  const regex =
-    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-  return regex.test(String(email).toLowerCase())
+import {isValidPhone} from './exemplo.js';
+
+function isValidEmail(email) {
+  const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return regex.test(String(email).toLowerCase());
 }
 
 const isValidCPF = (cpf) => {
@@ -13,6 +14,8 @@ const form = document.querySelector('form')
 const message = document.querySelector('.thanks')
 const inputName = document.querySelector('input[name="name"]')
 const inputEmail = document.querySelector('input[name="email"]')
+const inputCpf = document.querySelector('input[name="cpf"]')
+const inputTelefone = document.querySelector('input[name="telefone"]')
 
 let isValidForm = false
 
@@ -36,6 +39,13 @@ const validateInput = () => {
   if (!isValidEmail(inputEmail.value)) {
     invalidateElem(inputEmail)
   }
+
+  if(!isValidCPF(inputCpf.value)){
+    invalidateElem(inputCpf)
+  }
+  if(!isValidPhone(inputTelefone.value)){
+    invalidateElem(inputTelefone)
+  }
 }
 
 form.addEventListener('submit', (e) => {
@@ -56,4 +66,10 @@ inputName.addEventListener('input', () => {
 
 inputEmail.addEventListener('input', () => {
   resetInput(inputEmail)
+})
+inputCpf.addEventListener('input', () => {
+  resetInput(inputCpf)
+})
+inputTelefone.addEventListener('input',()=>{
+  resetInput(inputTelefone)
 })
